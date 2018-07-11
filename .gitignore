@@ -8,8 +8,6 @@
 *.sfo
 *.cbp
 
-
-switch_sd2vita
 .DS_Store
 .idea
 
@@ -23,5 +21,7 @@ cmake_install.cmake
 install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
+
+cmake-build-debug/
 
 vita3k.log
