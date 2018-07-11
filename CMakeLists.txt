@@ -15,7 +15,7 @@ endif()
 
 ## Define project parameters here
 # Name of the project
-set(SHORT_NAME huevita)
+set(SHORT_NAME HueVita)
 set(PSVITAIP  "192.168.0.15")
 set(VITA3K_PATH "/Applications/Vita3K.app/Contents/MacOS/Vita3K")
 project(${SHORT_NAME})
@@ -35,7 +35,7 @@ set(VITA_VERSION  "01.00")
 
 ## Flags and includes for building
 # Note that we make sure not to overwrite previous flags
-
+#-Werror -Wfatal-errors
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -fpermissive -std=gnu11 -Wall ")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fpermissive -std=c++11 -Wall ")
 
@@ -48,10 +48,18 @@ add_executable(${SHORT_NAME}
         src/main.cpp
         src/HueApp.cpp
         src/Api.cpp
+
         src/utils/Pad.cpp
         src/utils/Touch.cpp
         src/utils/IME.cpp
         src/utils/Net.cpp
+
+        src/hue/Group.cpp
+        src/hue/Light.cpp
+        src/hue/Schedule.cpp
+        src/hue/Sensor.cpp
+        src/hue/Config.cpp
+        src/hue/Rule.cpp
 )
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.

@@ -6,7 +6,13 @@
 #define HUEVITA_API_HPP
 
 #include <curl/curl.h>
+#include <jansson.h>
+
 #include <string>
+#include <cstring>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 class Api {
@@ -14,17 +20,19 @@ private:
     CURL *curl;
     CURLcode curlResult;
     std::string username;
-    std::uint32_t ipAddress;
+    std::string ipAddress;
 public:
     //methods
+    void createUsername();
 
     //getter
     const std::string &getUsername() const;
-    uint32_t getIpAddress() const;
+    const std::string &getIpAddress() const;
+    std::string getApiAddress();
 
     //setter
     void setUsername(const std::string &username);
-    void setIpAddress(uint32_t ipAddress);
+    void setIpAddress(const std::string &ipAddress);
 
 };
 

@@ -6,6 +6,7 @@
 #include <string>
 
 #include <vita2d.h>
+#include <jansson.h>
 
 #include "utils/Pad.hpp"
 #include "utils/Touch.hpp"
