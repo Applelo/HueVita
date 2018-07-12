@@ -4,6 +4,7 @@
 
 #include <string>
 #include <map>
+#include <jansson.h>
 
 struct whitelistItem {
     std::string last_use_date;
@@ -35,6 +36,9 @@ private:
     bool        linkbutton;
     bool        portalservices;
 public:
+    Config(json_t *json);
+
+
     const std::string &getName() const;
 
     void setName(const std::string &name);

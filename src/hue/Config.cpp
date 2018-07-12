@@ -1,6 +1,40 @@
 
 #include "Config.hpp"
 
+Config::Config(json_t *json)  {
+
+    this->name  =   json_string_value(json_object_get(json, "name"));
+    this->mac   =   json_string_value(json_object_get(json, "mac"));
+    this->dhcp  =   json_boolean_value(json_object_get(json, "dhcp"));
+    this->ipaddress = json_string_value(json_object_get(json, "ipaddress"));
+    this->netmask = json_string_value(json_object_get(json, "netmask"));
+    this->gateway = json_string_value(json_object_get(json, "gateway"));
+    this->proxyaddress = json_string_value(json_object_get(json, "proxyaddress"));
+    this->proxyport = (int)json_integer_value(json_object_get(json, "gateway"));
+    this->UTC = json_string_value(json_object_get(json, "UTC"));
+
+    json_t *whitelist = json_object_get(json, "whitelist");
+    const char *key;
+    json_t *value;
+    whitelistItem item;
+    json_object_foreach(whitelist, key, value) {
+        item.last_use_date = json_string_value(json_object_get(value, "last use date"));
+        item.create_date = json_string_value(json_object_get(value, "create date"));
+        item.name = json_string_value(json_object_get(value, "name"));
+        this->whitelist.insert(std::pair<std::string,whitelistItem>(key, item));
+    }
+
+    this->swversion = json_string_value(json_object_get(json, "swversion"));
+
+    this->swudpate.updatestate = (int) json_integer_value(json_object_get(json_object_get(json, "swupdate"), "updatestate"));
+    this->swudpate.url = json_string_value(json_object_get(json_object_get(json, "swupdate"), "url"));
+    this->swudpate.text = json_string_value(json_object_get(json_object_get(json, "swupdate"), "text"));
+    this->swudpate.notify = json_boolean_value(json_object_get(json_object_get(json, "swupdate"), "notify"));
+
+    this->linkbutton = json_boolean_value(json_object_get(json, "linkbutton"));
+    this->portalservices = json_boolean_value(json_object_get(json, "portalservices"));
+}
+
 const std::string &Config::getName() const {
     return name;
 }
@@ -112,3 +146,4 @@ bool Config::isPortalservices() const {
 void Config::setPortalservices(bool portalservices) {
     Config::portalservices = portalservices;
 }
+
