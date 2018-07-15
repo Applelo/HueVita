@@ -60,6 +60,7 @@ add_executable(${SHORT_NAME}
         src/hue/Sensor.cpp
         src/hue/Config.cpp
         src/hue/Rule.cpp
+        src/hue/ResourceLink.cpp
 )
 
 # Library to link to (drop the -l prefix). This will mostly be stubs.
