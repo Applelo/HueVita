@@ -33,6 +33,30 @@ void Light::setModelid(const std::string &modelid) {
     Light::modelid = modelid;
 }
 
+const std::string &Light::getManufacturername() const {
+    return manufacturername;
+}
+
+void Light::setManufacturername(const std::string &manufacturername) {
+    Light::manufacturername = manufacturername;
+}
+
+const std::string &Light::getProductname() const {
+    return productname;
+}
+
+void Light::setProductname(const std::string &productname) {
+    Light::productname = productname;
+}
+
+const std::string &Light::getUniqueid() const {
+    return uniqueid;
+}
+
+void Light::setUniqueid(const std::string &uniqueid) {
+    Light::uniqueid = uniqueid;
+}
+
 const std::string &Light::getSwversion() const {
     return swversion;
 }
@@ -41,10 +65,18 @@ void Light::setSwversion(const std::string &swversion) {
     Light::swversion = swversion;
 }
 
-const std::map<std::string, std::string> &Light::getPointsymbol() const {
-    return pointsymbol;
+const std::string &Light::getSwconfigid() const {
+    return swconfigid;
 }
 
-void Light::setPointsymbol(const std::map<std::string, std::string> &pointsymbol) {
-    Light::pointsymbol = pointsymbol;
+void Light::setSwconfigid(const std::string &swconfigid) {
+    Light::swconfigid = swconfigid;
+}
+
+const std::string &Light::getProductid() const {
+    return productid;
+}
+
+void Light::setProductid(const std::string &productid) {
+    Light::productid = productid;
 }

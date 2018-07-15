@@ -14,7 +14,20 @@ struct stateStruct {
     std::string alert;
     std::string effect;
     std::string colormode;
+    std::string mode;
     bool reachable;
+};
+
+struct capabilitiesStruct {
+    bool certified;
+    std::map<std::string, int> control;
+    std::map<std::string, bool> streaming;
+};
+
+struct configStruct {
+    std::string archetype;
+    std::string function;
+    std::string direction;
 };
 
 class Light {
@@ -23,32 +36,54 @@ class Light {
         std::string type;
         std::string name;
         std::string modelid;
+        std::string manufacturername;
+        std::string productname;
+
+        std::string uniqueid;
         std::string swversion;
-        std::map<std::string,std::string> pointsymbol;
+        std::string swconfigid;
+        std::string productid;
+
     public:
-        const stateStruct &getState() const;
+    const stateStruct &getState() const;
 
-        void setState(const stateStruct &state);
+    void setState(const stateStruct &state);
 
-        const std::string &getType() const;
+    const std::string &getType() const;
 
-        void setType(const std::string &type);
+    void setType(const std::string &type);
 
-        const std::string &getName() const;
+    const std::string &getName() const;
 
-        void setName(const std::string &name);
+    void setName(const std::string &name);
 
-        const std::string &getModelid() const;
+    const std::string &getModelid() const;
 
-        void setModelid(const std::string &modelid);
+    void setModelid(const std::string &modelid);
 
-        const std::string &getSwversion() const;
+    const std::string &getManufacturername() const;
 
-        void setSwversion(const std::string &swversion);
+    void setManufacturername(const std::string &manufacturername);
 
-        const std::map<std::string, std::string> &getPointsymbol() const;
+    const std::string &getProductname() const;
 
-        void setPointsymbol(const std::map<std::string, std::string> &pointsymbol);
+    void setProductname(const std::string &productname);
+
+    const std::string &getUniqueid() const;
+
+    void setUniqueid(const std::string &uniqueid);
+
+    const std::string &getSwversion() const;
+
+    void setSwversion(const std::string &swversion);
+
+    const std::string &getSwconfigid() const;
+
+    void setSwconfigid(const std::string &swconfigid);
+
+    const std::string &getProductid() const;
+
+    void setProductid(const std::string &productid);
 
 };
 
