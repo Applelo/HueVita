@@ -4,6 +4,7 @@
 
 #include <string>
 #include <map>
+#include <jansson.h>
 
 struct stateStruct {
     bool on;
@@ -38,13 +39,16 @@ class Light {
         std::string modelid;
         std::string manufacturername;
         std::string productname;
-
+        capabilitiesStruct capabilities;
+        configStruct config;
         std::string uniqueid;
         std::string swversion;
         std::string swconfigid;
         std::string productid;
 
     public:
+        Light(json_t *json);
+
     const stateStruct &getState() const;
 
     void setState(const stateStruct &state);
@@ -68,6 +72,14 @@ class Light {
     const std::string &getProductname() const;
 
     void setProductname(const std::string &productname);
+
+    const capabilitiesStruct &getCapabilities() const;
+
+    void setCapabilities(const capabilitiesStruct &capabilities);
+
+    const configStruct &getConfig() const;
+
+    void setConfig(const configStruct &config);
 
     const std::string &getUniqueid() const;
 
