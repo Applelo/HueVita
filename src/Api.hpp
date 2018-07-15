@@ -23,7 +23,8 @@ private:
     std::string ipAddress;
 public:
     //methods
-    void createUsername();
+
+    int createUsername();
 
     //getter
     const std::string &getUsername() const;

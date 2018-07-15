@@ -35,11 +35,11 @@ size_t writefunc(void *ptr, size_t size, size_t nmemb, struct curl_string *s)
 }
 
 //methods
-void Api::createUsername() {
+int Api::createUsername() {
     curl = curl_easy_init();
 
     if (curl) {
-        std::string json = "{\"devicetype\":\"huevita#mypsvita\"}";
+        std::string json = "{\"devicetype\":\"huevita#vita\"}";
         struct curl_string result;
         init_string(&result);
 
@@ -62,18 +62,34 @@ void Api::createUsername() {
         json_error_t errorJson;
 
         resultJson = json_loads(result.ptr, 0, &errorJson);
-        this->username = json_string_value(
-                json_object_get(
-                        json_object_get(
-                                json_array_get(resultJson, 0),
-                                "success"
-                        ),
-                        "username"
-                )
-        );
-        curl_easy_cleanup(curl);
-    }
 
+        if (!resultJson) {
+            curl_easy_cleanup(curl);
+            return -1;
+        }
+
+        bool statusJson =  json_object_get(json_array_get(resultJson, 0), "success") != NULL;
+
+        if (statusJson) {
+            this->username = json_string_value(
+                    json_object_get(
+                            json_object_get(
+                                    json_array_get(resultJson, 0),
+                                    "success"
+                            ),
+                            "username"
+                    )
+            );
+            curl_easy_cleanup(curl);
+            return 1;
+        }
+        else {
+            curl_easy_cleanup(curl);
+            return 0;
+        }
+    }
+    curl_easy_cleanup(curl);
+    return -1;
 }
 
 //getter
