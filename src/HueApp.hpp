@@ -14,8 +14,8 @@
 class HueApp {
 private:
    int run = 1;
-   Pad *pad = new Pad();
-   Touch *touch = new Touch();
+   Pad *pad;
+   Touch *touch;
 public:
     void start();
 

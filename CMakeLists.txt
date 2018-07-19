@@ -77,6 +77,8 @@ add_executable(${SHORT_NAME}
         src/HueApp.cpp
         src/Api.cpp
 
+        src/ui/Icons.cpp
+
         src/utils/Pad.cpp
         src/utils/Touch.cpp
         src/utils/IME.cpp
@@ -103,26 +105,28 @@ target_link_libraries(${SHORT_NAME}
         crypto
         opus
 
-        vita2d
-        SceNet_stub
-        ScePgf_stub
-        ScePvf_stub
-        SceGxm_stub
-        SceHttp_stub
+        jansson
+
+        SceDisplay_stub
         SceCtrl_stub
         SceTouch_stub
-        SceNetCtl_stub
-        SceAppUtil_stub
-        SceDisplay_stub
-        SceLibKernel_stub
+        SceHttp_stub
+        SceNet_stub
         SceSysmodule_stub
-        ScePower_stub
+        SceNetCtl_stub
         SceCommonDialog_stub
+        SceIme_stub
+        SceAppUtil_stub
         SceRegistryMgr_stub
+
+        vita2d
+        SceGxm_stub
+        ScePgf_stub
+        ScePvf_stub
+        SceCommonDialog_stub
+        freetype
         png
         jpeg
-        freetype
-        jansson
         z
         m
         c
@@ -142,6 +146,8 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
 
         i18n/fr.json i18n/fr.json
         i18n/en.json i18n/en.json
+
+        assets/fonts/materialdesignicons.ttf assets/fonts/materialdesignicons.ttf
 )
 
 
