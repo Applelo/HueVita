@@ -1,4 +1,4 @@
-#include "HueApp.hpp"
+#include "main.hpp"
 
 int main() {
     HueApp* hueApp = new HueApp();

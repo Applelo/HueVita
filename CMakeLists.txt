@@ -41,10 +41,38 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -fpermissive -std=c++11 -Wall ")
 
 
 include_directories(
-  ../common
 )
 
+link_directories(
+        ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+# Builds
+FUNCTION(ADD_RESOURCES out_var)
+    SET(result)
+    FOREACH(in_f ${ARGN})
+        SET(out_f "${CMAKE_CURRENT_BINARY_DIR}/${in_f}.o")
+        GET_FILENAME_COMPONENT(out_dir ${out_f} DIRECTORY)
+        ADD_CUSTOM_COMMAND(OUTPUT ${out_f}
+                COMMAND ${CMAKE_COMMAND} -E make_directory ${out_dir}
+                COMMAND ${CMAKE_LINKER} -r -b binary -o ${out_f} ${in_f}
+                DEPENDS ${in_f}
+                WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+                COMMENT "Building resource ${out_f}"
+                VERBATIM
+                )
+        LIST(APPEND result ${out_f})
+    ENDFOREACH()
+    SET(${out_var} "${result}" PARENT_SCOPE)
+ENDFUNCTION()
+
+#file(GLOB res_files RELATIVE
+#        ${CMAKE_SOURCE_DIR}
+#        )
+#add_resources(huevita_res ${res_files})
+
 add_executable(${SHORT_NAME}
+       # ${huevita_res}
         src/main.cpp
         src/HueApp.cpp
         src/Api.cpp
@@ -53,6 +81,7 @@ add_executable(${SHORT_NAME}
         src/utils/Touch.cpp
         src/utils/IME.cpp
         src/utils/Net.cpp
+        src/utils/I18n.cpp
 
         src/hue/Group.cpp
         src/hue/Light.cpp
@@ -110,6 +139,9 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} eboot.bin
         sce_sys/livearea/contents/bg.png sce_sys/livearea/contents/bg.png
         sce_sys/livearea/contents/startup.png sce_sys/livearea/contents/startup.png
         sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
+
+        i18n/fr.json i18n/fr.json
+        i18n/en.json i18n/en.json
 )
 
 
