@@ -19,7 +19,7 @@ void HueApp::start() {
         pad->read();
         touch->read();
 
-        icons->draw(100, 100, "\uF59F");
+        icons->draw(100, 100, "access-alarms");
 
         vita2d_end_drawing();
         vita2d_swap_buffers();
